@@ -18,6 +18,13 @@
 
 #include "ble_lib.h"
 #include "sn_timer.h"
+#include "sn_common.h"
+
+#include "scd4x_i2c.h"
+#include "sensirion_common.h"
+#include "sensirion_i2c_hal.h"
+
+
 
 
 #define SLEEP_PERIODE   (180000)    /* time of sleep in milliseconds */
@@ -72,7 +79,7 @@ const uint8_t DATA_AVG_NUMBER = 50;
 
 void app_data_state_task()
 {
-    static ble_lib_node_data_t data;
+    static sn_data_t data;
     static intern_state_t intern_state = ENTRY;
     static uint8_t sensor_data_avg_counter = 0;
     
@@ -182,6 +189,16 @@ int main(void)
     power_management_init();
     ble_lib_init();
 
+
+    
+    sensirion_i2c_hal_init();
+
+    // Clean up potential SCD40 states
+    scd4x_wake_up();
+    scd4x_stop_periodic_measurement();
+    scd4x_reinit();
+
+    
     // Start execution.
     NRF_LOG_INFO("Sensor node started.\r\n");
 

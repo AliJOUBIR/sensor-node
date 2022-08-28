@@ -75,7 +75,7 @@ static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< I
 };
 
 
-static ble_lib_node_data_t sensor_data = {
+static sn_data_t sensor_data = {
     .temperature = 0,
     .humidity = 0,
     .co2 = 0,
@@ -104,7 +104,7 @@ void ble_lib_init(void)
 /**@brief Function for updating the sensor node data
  * 
  */
-void ble_lib_update_sensor_data(ble_lib_node_data_t data)
+void ble_lib_update_sensor_data(sn_data_t data)
 {
 
   sensor_data = data;
@@ -153,7 +153,7 @@ static void advertising_init(void)
     
     
     manuf_specific_data.data.p_data = (uint8_t *) &sensor_data;
-    manuf_specific_data.data.size   = sizeof(ble_lib_node_data_t);
+    manuf_specific_data.data.size   = sizeof(sn_data_t);
 
     // Build and set advertising data.s
     memset(&advdata, 0, sizeof(advdata));

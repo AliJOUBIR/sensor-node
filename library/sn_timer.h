@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "sn_common.h"
+
 
 /**@brief Function for initializing the sensor node timers
  */

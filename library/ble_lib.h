@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "sn_common.h"
+
 typedef struct{
     uint8_t temperature;
     uint8_t humidity;
@@ -13,7 +15,7 @@ typedef struct{
 
 void ble_lib_init(void);
 
-void ble_lib_update_sensor_data(ble_lib_node_data_t data);
+void ble_lib_update_sensor_data(sn_data_t data);
 
 void ble_lib_start_adv(void);
 

@@ -41,14 +41,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="16" y="92" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="85" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="177" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../library/ble_lib.c" selected="0" top="100" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="50" y="138" useTextEdit="1" openedFrom="C:/Users/ALI_JOUBIR/ncs/nRF5_SDK_17.1.0_ddde560/MyProjects/smart scale/sensor node/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_advertising/ble_advertising.h" selected="0" top="129" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="28" y="153" useTextEdit="1" openedFrom="C:/Users/ALI_JOUBIR/ncs/nRF5_SDK_17.1.0_ddde560/components/ble/ble_advertising/ble_advertising.h" useBinaryEdit="0" left="0" path="../../../../../../components/ble/common/ble_advdata.h" selected="0" top="136" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="24" y="1853" useTextEdit="1" openedFrom="C:/Users/ALI_JOUBIR/ncs/nRF5_SDK_17.1.0_ddde560/MyProjects/smart scale/sensor node/library/ble_lib.c" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble_gap.h" selected="0" top="1846" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="799" useTextEdit="1" openedFrom="C:/Users/ALI_JOUBIR/ncs/nRF5_SDK_17.1.0_ddde560/MyProjects/smart scale/sensor node/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_advertising/ble_advertising.c" selected="0" top="785" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="187" useTextEdit="1" openedFrom="C:/Users/ALI_JOUBIR/ncs/nRF5_SDK_17.1.0_ddde560/MyProjects/smart scale/sensor node/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/timer/app_timer.h" selected="0" top="173" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="601" useTextEdit="1" openedFrom="C:/Users/ALI_JOUBIR/ncs/nRF5_SDK_17.1.0_ddde560/MyProjects/smart scale/sensor node/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/timer/app_timer2.c" selected="0" top="581" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="18" y="178" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="165" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="12" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../library/sn_timer.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="33" y="18" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../library/sn_timer.c" selected="0" top="9" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ble_app_hrs_pca10040_s132" fileDialogDefaultFilter="*" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/ALI_JOUBIR/ncs/nRF5_SDK_17.1.0_ddde560/MyProjects/smart scale/sensor node/library" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
