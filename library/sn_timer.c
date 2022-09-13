@@ -12,24 +12,27 @@ static void adv_timer_handler(void * p_context);
 static void sleep_timer_handler(void * p_context);
 
 
-void sn_timer_init(void)
+sn_error_t sn_timer_init(void)
 {
     ret_code_t err_code = app_timer_init();
     APP_ERROR_CHECK(err_code);
     app_timer_create(&m_adv_timer,APP_TIMER_MODE_SINGLE_SHOT,adv_timer_handler);
     app_timer_create(&m_sleep_timer,APP_TIMER_MODE_SINGLE_SHOT,sleep_timer_handler);
+    return SN_SUCCESS;
 }
 
 
-void sn_timer_start_adv(uint32_t timeout_ms)
+sn_error_t sn_timer_start_adv(uint32_t timeout_ms)
 {
     app_timer_start(m_adv_timer,APP_TIMER_TICKS(timeout_ms),NULL);
+    return SN_SUCCESS;
 }
 
 
-void sn_timer_start_sleep(uint32_t timeout_ms)
+sn_error_t sn_timer_start_sleep(uint32_t timeout_ms)
 {
     app_timer_start(m_sleep_timer,APP_TIMER_TICKS(timeout_ms),NULL);
+    return SN_SUCCESS;
 }
 
 bool sn_timer_get_adv_timeout_flag(void)
