@@ -19,12 +19,11 @@
 #include "ble_lib.h"
 #include "sn_timer.h"
 #include "sn_common.h"
-
-#include "scd4x_i2c.h"
-#include "sensirion_common.h"
-#include "sensirion_i2c_hal.h"
+#include "sn_sensor.h"
 
 
+
+sn_sensor_t sn_sensor;
 
 
 #define SLEEP_PERIODE   (180000)    /* time of sleep in milliseconds */
@@ -188,15 +187,10 @@ int main(void)
     sn_timer_init();
     power_management_init();
     ble_lib_init();
-
-
     
-    sensirion_i2c_hal_init();
 
-    // Clean up potential SCD40 states
-    scd4x_wake_up();
-    scd4x_stop_periodic_measurement();
-    scd4x_reinit();
+
+    sn_sensor_init(&sn_sensor);
 
     
     // Start execution.

@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "stdint.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "sn_common.h": "c",
+        "sensirion_config.h": "c"
     }
 }
