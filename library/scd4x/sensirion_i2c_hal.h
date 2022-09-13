@@ -33,10 +33,21 @@
 #define SENSIRION_I2C_HAL_H
 
 #include "sensirion_config.h"
-
+#include <nrf_drv_twi.h>
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
+
+
+typedef struct
+{
+    nrf_drv_twi_t * inst;
+    nrf_drv_twi_config_t * cfg;
+
+    uint8_t scl;
+    uint8_t sda;
+}i2c_t;
+
 
 /**
  * Select the current i2c bus by index.
@@ -48,18 +59,18 @@ extern "C" {
  * @param bus_idx   Bus index to select
  * @returns         0 on success, an error code otherwise
  */
-int16_t sensirion_i2c_hal_select_bus(uint8_t bus_idx);
+int16_t sensirion_i2c_hal_select_bus(i2c_t  const * const me,uint8_t bus_idx);
 
 /**
  * Initialize all hard- and software components that are needed for the I2C
  * communication.
  */
-void sensirion_i2c_hal_init(void);
+void sensirion_i2c_hal_init(i2c_t  * const me);
 
 /**
  * Release all resources initialized by sensirion_i2c_hal_init().
  */
-void sensirion_i2c_hal_free(void);
+void sensirion_i2c_hal_free(i2c_t  const * const me);
 
 /**
  * Execute one read transaction on the I2C bus, reading a given number of bytes.
@@ -71,7 +82,7 @@ void sensirion_i2c_hal_free(void);
  * @param count   number of bytes to read from I2C and store in the buffer
  * @returns 0 on success, error code otherwise
  */
-int8_t sensirion_i2c_hal_read(uint8_t address, uint8_t* data, uint16_t count);
+int8_t sensirion_i2c_hal_read(i2c_t  const * const me,uint8_t address, uint8_t* data, uint16_t count);
 
 /**
  * Execute one write transaction on the I2C bus, sending a given number of
@@ -84,7 +95,7 @@ int8_t sensirion_i2c_hal_read(uint8_t address, uint8_t* data, uint16_t count);
  * @param count   number of bytes to read from the buffer and send over I2C
  * @returns 0 on success, error code otherwise
  */
-int8_t sensirion_i2c_hal_write(uint8_t address, const uint8_t* data,
+int8_t sensirion_i2c_hal_write(i2c_t  const * const me,uint8_t address, const uint8_t* data,
                                uint16_t count);
 
 /**
@@ -103,7 +114,7 @@ int8_t sensirion_i2c_hal_write(uint8_t address, const uint8_t* data,
  *
  * @param useconds the sleep time in microseconds
  */
-void sensirion_i2c_hal_sleep_usec(uint32_t useconds);
+void sensirion_i2c_hal_sleep_usec(i2c_t  const * const me,uint32_t useconds);
 
 #ifdef __cplusplus
 }

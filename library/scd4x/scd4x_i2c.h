@@ -45,6 +45,7 @@ extern "C" {
 
 #include "sensirion_config.h"
 
+
 /**
  * scd4x_start_periodic_measurement() - start periodic measurement, signal
  * update interval is 5 seconds.
@@ -53,7 +54,7 @@ extern "C" {
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_start_periodic_measurement(void);
+int16_t scd4x_start_periodic_measurement(scd4x_t  const * const me);
 
 /**
  * scd4x_read_measurement_ticks() - read sensor output. The measurement data can
@@ -75,7 +76,7 @@ int16_t scd4x_start_periodic_measurement(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_read_measurement_ticks(uint16_t* co2, uint16_t* temperature,
+int16_t scd4x_read_measurement_ticks(scd4x_t  const * const me,uint16_t* co2, uint16_t* temperature,
                                      uint16_t* humidity);
 
 /**
@@ -94,7 +95,7 @@ int16_t scd4x_read_measurement_ticks(uint16_t* co2, uint16_t* temperature,
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_read_measurement(uint16_t* co2, int32_t* temperature_m_deg_c,
+int16_t scd4x_read_measurement(scd4x_t  const * const me,uint16_t* co2, int32_t* temperature_m_deg_c,
                                int32_t* humidity_m_percent_rh);
 
 /**
@@ -105,7 +106,7 @@ int16_t scd4x_read_measurement(uint16_t* co2, int32_t* temperature_m_deg_c,
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_stop_periodic_measurement(void);
+int16_t scd4x_stop_periodic_measurement(scd4x_t  const * const me);
 
 /**
  * scd4x_get_temperature_offset_ticks() - The temperature offset represents the
@@ -119,7 +120,7 @@ int16_t scd4x_stop_periodic_measurement(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_get_temperature_offset_ticks(uint16_t* t_offset);
+int16_t scd4x_get_temperature_offset_ticks(scd4x_t  const * const me,uint16_t* t_offset);
 
 /**
  * scd4x_get_temperature_offset() - The temperature offset represents the
@@ -132,7 +133,7 @@ int16_t scd4x_get_temperature_offset_ticks(uint16_t* t_offset);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_get_temperature_offset(int32_t* t_offset_m_deg_c);
+int16_t scd4x_get_temperature_offset(scd4x_t  const * const me,int32_t* t_offset_m_deg_c);
 
 /**
  * scd4x_set_temperature_offset_ticks() - Setting the temperature offset of the
@@ -149,7 +150,7 @@ int16_t scd4x_get_temperature_offset(int32_t* t_offset_m_deg_c);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_set_temperature_offset_ticks(uint16_t t_offset);
+int16_t scd4x_set_temperature_offset_ticks(scd4x_t  const * const me,uint16_t t_offset);
 
 /**
  * scd4x_set_temperature_offset() - Setting the temperature offset of the SCD4x
@@ -166,7 +167,7 @@ int16_t scd4x_set_temperature_offset_ticks(uint16_t t_offset);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_set_temperature_offset(int32_t t_offset_m_deg_c);
+int16_t scd4x_set_temperature_offset(scd4x_t  const * const me,int32_t t_offset_m_deg_c);
 
 /**
  * scd4x_get_sensor_altitude() - Get configured sensor altitude in meters above
@@ -179,7 +180,7 @@ int16_t scd4x_set_temperature_offset(int32_t t_offset_m_deg_c);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_get_sensor_altitude(uint16_t* sensor_altitude);
+int16_t scd4x_get_sensor_altitude(scd4x_t  const * const me,uint16_t* sensor_altitude);
 
 /**
  * scd4x_set_sensor_altitude() - Set sensor altitude in meters above sea level.
@@ -192,7 +193,7 @@ int16_t scd4x_get_sensor_altitude(uint16_t* sensor_altitude);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_set_sensor_altitude(uint16_t sensor_altitude);
+int16_t scd4x_set_sensor_altitude(scd4x_t  const * const me,uint16_t sensor_altitude);
 
 /**
  * scd4x_set_ambient_pressure() - The set_ambient_pressure command can be sent
@@ -207,7 +208,7 @@ int16_t scd4x_set_sensor_altitude(uint16_t sensor_altitude);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_set_ambient_pressure(uint16_t ambient_pressure);
+int16_t scd4x_set_ambient_pressure(scd4x_t  const * const me,uint16_t ambient_pressure);
 
 /**
  * scd4x_perform_forced_recalibration() - To successfully conduct an accurate
@@ -226,7 +227,7 @@ command failed. Convert value to CO₂ ppm with: value - 0x8000
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_perform_forced_recalibration(uint16_t target_co2_concentration,
+int16_t scd4x_perform_forced_recalibration(scd4x_t  const * const me,uint16_t target_co2_concentration,
                                            uint16_t* frc_correction);
 
 /**
@@ -236,7 +237,7 @@ int16_t scd4x_perform_forced_recalibration(uint16_t target_co2_concentration,
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_get_automatic_self_calibration(uint16_t* asc_enabled);
+int16_t scd4x_get_automatic_self_calibration(scd4x_t  const * const me,uint16_t* asc_enabled);
 
 /**
  * scd4x_set_automatic_self_calibration() - By default, the ASC is enabled.
@@ -245,7 +246,7 @@ int16_t scd4x_get_automatic_self_calibration(uint16_t* asc_enabled);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_set_automatic_self_calibration(uint16_t asc_enabled);
+int16_t scd4x_set_automatic_self_calibration(scd4x_t  const * const me,uint16_t asc_enabled);
 
 /**
  * scd4x_start_low_power_periodic_measurement() - Start low power periodic
@@ -255,7 +256,7 @@ int16_t scd4x_set_automatic_self_calibration(uint16_t asc_enabled);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_start_low_power_periodic_measurement(void);
+int16_t scd4x_start_low_power_periodic_measurement(scd4x_t  const * const me);
 
 /**
  * scd4x_get_data_ready_flag() - Check whether new measurement data is
@@ -265,7 +266,7 @@ int16_t scd4x_start_low_power_periodic_measurement(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_get_data_ready_flag(bool* data_ready_flag);
+int16_t scd4x_get_data_ready_flag(scd4x_t  const * const me,bool* data_ready_flag);
 
 /**
  * scd4x_persist_settings() - Configuration settings such as the temperature
@@ -282,7 +283,7 @@ int16_t scd4x_get_data_ready_flag(bool* data_ready_flag);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_persist_settings(void);
+int16_t scd4x_persist_settings(scd4x_t  const * const me);
 
 /**
  * scd4x_get_serial_number() - Reading out the serial number can be used to
@@ -298,7 +299,7 @@ int16_t scd4x_persist_settings(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_get_serial_number(uint16_t* serial_0, uint16_t* serial_1,
+int16_t scd4x_get_serial_number(scd4x_t  const * const me,uint16_t* serial_0, uint16_t* serial_1,
                                 uint16_t* serial_2);
 
 /**
@@ -309,7 +310,7 @@ int16_t scd4x_get_serial_number(uint16_t* serial_0, uint16_t* serial_1,
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_perform_self_test(uint16_t* sensor_status);
+int16_t scd4x_perform_self_test(scd4x_t  const * const me,uint16_t* sensor_status);
 
 /**
  * scd4x_perform_factory_reset() - Initiates the reset of all configurations
@@ -317,7 +318,7 @@ int16_t scd4x_perform_self_test(uint16_t* sensor_status);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_perform_factory_reset(void);
+int16_t scd4x_perform_factory_reset(scd4x_t  const * const me);
 
 /**
  * scd4x_reinit() - The reinit command reinitializes the sensor by reloading
@@ -329,7 +330,7 @@ int16_t scd4x_perform_factory_reset(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_reinit(void);
+int16_t scd4x_reinit(scd4x_t  const * const me);
 
 /**
  * scd4x_measure_single_shot() - On-demand measurement of CO₂ concentration,
@@ -340,7 +341,7 @@ int16_t scd4x_reinit(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_measure_single_shot(void);
+int16_t scd4x_measure_single_shot(scd4x_t  const * const me);
 
 /**
  * scd4x_measure_single_shot_rht_only() - On-demand measurement of relative
@@ -350,7 +351,7 @@ int16_t scd4x_measure_single_shot(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_measure_single_shot_rht_only(void);
+int16_t scd4x_measure_single_shot_rht_only(scd4x_t  const * const me);
 
 /**
  * scd4x_power_down() - Put the sensor from idle to sleep mode to reduce current
@@ -360,7 +361,7 @@ int16_t scd4x_measure_single_shot_rht_only(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_power_down(void);
+int16_t scd4x_power_down(scd4x_t  const * const me);
 
 /**
  * scd4x_wake_up() - Wake up sensor from sleep mode to idle mode.
@@ -369,7 +370,7 @@ int16_t scd4x_power_down(void);
  *
  * @return 0 on success, an error code otherwise
  */
-int16_t scd4x_wake_up(void);
+int16_t scd4x_wake_up(scd4x_t  const * const me);
 
 #ifdef __cplusplus
 }

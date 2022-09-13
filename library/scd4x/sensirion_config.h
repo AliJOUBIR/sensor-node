@@ -32,6 +32,9 @@
 #ifndef SENSIRION_CONFIG_H
 #define SENSIRION_CONFIG_H
 
+
+#include "sensirion_i2c_hal.h"
+
 /**
  * If your platform does not provide the library stdlib.h you have to remove the
  * include and define NULL yourself (see below).
@@ -64,6 +67,12 @@
  * typedef char int8_t;
  * typedef unsigned char uint8_t;
  */
+
+typedef struct
+{
+  i2c_t * i2c;
+  
+}scd4x_t;
 
 #ifndef __cplusplus
 

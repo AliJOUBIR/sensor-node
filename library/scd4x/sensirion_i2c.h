@@ -52,9 +52,14 @@ extern "C" {
 #define SENSIRION_NUM_WORDS(x) (sizeof(x) / SENSIRION_WORD_SIZE)
 #define SENSIRION_MAX_BUFFER_WORDS 32
 
-uint8_t sensirion_i2c_generate_crc(const uint8_t* data, uint16_t count);
 
-int8_t sensirion_i2c_check_crc(const uint8_t* data, uint16_t count,
+
+
+
+
+uint8_t sensirion_i2c_generate_crc(scd4x_t  const * const me,const uint8_t* data, uint16_t count);
+
+int8_t sensirion_i2c_check_crc(scd4x_t  const * const me,const uint8_t* data, uint16_t count,
                                uint8_t checksum);
 
 /**
@@ -65,7 +70,7 @@ int8_t sensirion_i2c_check_crc(const uint8_t* data, uint16_t count,
  *
  * @return  NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_general_call_reset(void);
+int16_t sensirion_i2c_general_call_reset(scd4x_t  const * const me);
 
 /**
  * sensirion_i2c_fill_cmd_send_buf() - create the i2c send buffer for a command
@@ -80,7 +85,7 @@ int16_t sensirion_i2c_general_call_reset(void);
  *
  * @return      The number of bytes written to buf
  */
-uint16_t sensirion_i2c_fill_cmd_send_buf(uint8_t* buf, uint16_t cmd,
+uint16_t sensirion_i2c_fill_cmd_send_buf(scd4x_t  const * const me,uint8_t* buf, uint16_t cmd,
                                          const uint16_t* args,
                                          uint8_t num_args);
 
@@ -94,7 +99,7 @@ uint16_t sensirion_i2c_fill_cmd_send_buf(uint8_t* buf, uint16_t cmd,
  *
  * @return      NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_read_words(uint8_t address, uint16_t* data_words,
+int16_t sensirion_i2c_read_words(scd4x_t  const * const me,uint8_t address, uint16_t* data_words,
                                  uint16_t num_words);
 
 /**
@@ -113,7 +118,7 @@ int16_t sensirion_i2c_read_words(uint8_t address, uint16_t* data_words,
  *
  * @return      NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_read_words_as_bytes(uint8_t address, uint8_t* data,
+int16_t sensirion_i2c_read_words_as_bytes(scd4x_t  const * const me,uint8_t address, uint8_t* data,
                                           uint16_t num_words);
 
 /**
@@ -123,7 +128,7 @@ int16_t sensirion_i2c_read_words_as_bytes(uint8_t address, uint8_t* data,
  *
  * @return      NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_write_cmd(uint8_t address, uint16_t command);
+int16_t sensirion_i2c_write_cmd(scd4x_t  const * const me,uint8_t address, uint16_t command);
 
 /**
  * sensirion_i2c_write_cmd_with_args() - writes a command with arguments to the
@@ -135,7 +140,7 @@ int16_t sensirion_i2c_write_cmd(uint8_t address, uint16_t command);
  *
  * @return      NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_write_cmd_with_args(uint8_t address, uint16_t command,
+int16_t sensirion_i2c_write_cmd_with_args(scd4x_t  const * const me,uint8_t address, uint16_t command,
                                           const uint16_t* data_words,
                                           uint16_t num_words);
 
@@ -150,7 +155,7 @@ int16_t sensirion_i2c_write_cmd_with_args(uint8_t address, uint16_t command,
  *
  * @return      NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_delayed_read_cmd(uint8_t address, uint16_t cmd,
+int16_t sensirion_i2c_delayed_read_cmd(scd4x_t  const * const me,uint8_t address, uint16_t cmd,
                                        uint32_t delay_us, uint16_t* data_words,
                                        uint16_t num_words);
 /**
@@ -163,7 +168,7 @@ int16_t sensirion_i2c_delayed_read_cmd(uint8_t address, uint16_t cmd,
  *
  * @return      NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_read_cmd(uint8_t address, uint16_t cmd,
+int16_t sensirion_i2c_read_cmd(scd4x_t  const * const me,uint8_t address, uint16_t cmd,
                                uint16_t* data_words, uint16_t num_words);
 
 /**
@@ -178,7 +183,7 @@ int16_t sensirion_i2c_read_cmd(uint8_t address, uint16_t cmd,
  *
  * @return        Offset of next free byte in the buffer after writing the data.
  */
-uint16_t sensirion_i2c_add_command_to_buffer(uint8_t* buffer, uint16_t offset,
+uint16_t sensirion_i2c_add_command_to_buffer(scd4x_t  const * const me,uint8_t* buffer, uint16_t offset,
                                              uint16_t command);
 
 /**
@@ -193,7 +198,7 @@ uint16_t sensirion_i2c_add_command_to_buffer(uint8_t* buffer, uint16_t offset,
  *
  * @return        Offset of next free byte in the buffer after writing the data.
  */
-uint16_t sensirion_i2c_add_uint32_t_to_buffer(uint8_t* buffer, uint16_t offset,
+uint16_t sensirion_i2c_add_uint32_t_to_buffer(scd4x_t  const * const me,uint8_t* buffer, uint16_t offset,
                                               uint32_t data);
 
 /**
@@ -208,7 +213,7 @@ uint16_t sensirion_i2c_add_uint32_t_to_buffer(uint8_t* buffer, uint16_t offset,
  *
  * @return        Offset of next free byte in the buffer after writing the data.
  */
-uint16_t sensirion_i2c_add_int32_t_to_buffer(uint8_t* buffer, uint16_t offset,
+uint16_t sensirion_i2c_add_int32_t_to_buffer(scd4x_t  const * const me,uint8_t* buffer, uint16_t offset,
                                              int32_t data);
 
 /**
@@ -223,7 +228,7 @@ uint16_t sensirion_i2c_add_int32_t_to_buffer(uint8_t* buffer, uint16_t offset,
  *
  * @return        Offset of next free byte in the buffer after writing the data.
  */
-uint16_t sensirion_i2c_add_uint16_t_to_buffer(uint8_t* buffer, uint16_t offset,
+uint16_t sensirion_i2c_add_uint16_t_to_buffer(scd4x_t  const * const me,uint8_t* buffer, uint16_t offset,
                                               uint16_t data);
 
 /**
@@ -238,7 +243,7 @@ uint16_t sensirion_i2c_add_uint16_t_to_buffer(uint8_t* buffer, uint16_t offset,
  *
  * @return        Offset of next free byte in the buffer after writing the data.
  */
-uint16_t sensirion_i2c_add_int16_t_to_buffer(uint8_t* buffer, uint16_t offset,
+uint16_t sensirion_i2c_add_int16_t_to_buffer(scd4x_t  const * const me,uint8_t* buffer, uint16_t offset,
                                              int16_t data);
 
 /**
@@ -253,7 +258,7 @@ uint16_t sensirion_i2c_add_int16_t_to_buffer(uint8_t* buffer, uint16_t offset,
  *
  * @return        Offset of next free byte in the buffer after writing the data.
  */
-uint16_t sensirion_i2c_add_float_to_buffer(uint8_t* buffer, uint16_t offset,
+uint16_t sensirion_i2c_add_float_to_buffer(scd4x_t  const * const me,uint8_t* buffer, uint16_t offset,
                                            float data);
 
 /**
@@ -273,7 +278,7 @@ uint16_t sensirion_i2c_add_float_to_buffer(uint8_t* buffer, uint16_t offset,
  * @return            Offset of next free byte in the buffer after writing the
  *                    data.
  */
-uint16_t sensirion_i2c_add_bytes_to_buffer(uint8_t* buffer, uint16_t offset,
+uint16_t sensirion_i2c_add_bytes_to_buffer(scd4x_t  const * const me,uint8_t* buffer, uint16_t offset,
                                            uint8_t* data, uint16_t data_length);
 
 /**
@@ -288,7 +293,7 @@ uint16_t sensirion_i2c_add_bytes_to_buffer(uint8_t* buffer, uint16_t offset,
  *
  * @return        NO_ERROR on success, error code otherwise
  */
-int16_t sensirion_i2c_write_data(uint8_t address, const uint8_t* data,
+int16_t sensirion_i2c_write_data(scd4x_t  const * const me,uint8_t address, const uint8_t* data,
                                  uint16_t data_length);
 
 /**
@@ -298,14 +303,14 @@ int16_t sensirion_i2c_write_data(uint8_t address, const uint8_t* data,
  * @param buffer               Allocated buffer to store data as bytes. Needs
  *                             to be big enough to store the data including
  *                             CRC. Twice the size of data should always
- *                             suffice.
+ *                             ssuffice.
  * @param expected_data_length Number of bytes to read (without CRC). Needs
  *                             to be a multiple of SENSIRION_WORD_SIZE,
  *                             otherwise the function returns BYTE_NUM_ERROR.
  *
  * @return            NO_ERROR on success, an error code otherwise
  */
-int16_t sensirion_i2c_read_data_inplace(uint8_t address, uint8_t* buffer,
+int16_t sensirion_i2c_read_data_inplace(scd4x_t  const * const me,uint8_t address, uint8_t* buffer,
                                         uint16_t expected_data_length);
 #ifdef __cplusplus
 }
