@@ -94,41 +94,45 @@ static void ble_stack_init(void);
  * advertising mode only
  * 
  */
-void ble_lib_init(void)
+sn_error_t ble_lib_init(void)
 {
     ble_stack_init();
     //advertising_init();
+    return SN_SUCCESS;
 }
 
 
 /**@brief Function for updating the sensor node data
  * 
  */
-void ble_lib_update_sensor_data(sn_data_t data)
+sn_error_t ble_lib_update_sensor_data(sn_data_t data)
 {
 
   sensor_data = data;
-  advertising_init(); 
+  advertising_init();
+  return SN_SUCCESS;
 
 }
 
 /**@brief Function for starting advertising.
  */
-void ble_lib_start_adv(void)
+sn_error_t ble_lib_start_adv(void)
 {
     ret_code_t err_code;
 
     err_code = sd_ble_gap_adv_start(m_adv_handle, APP_BLE_CONN_CFG_TAG);
     APP_ERROR_CHECK(err_code);
+    return SN_SUCCESS;
 }
 
 /**@brief Function for stoping advertising.
  */
-void ble_lib_stop_adv(void)
+sn_error_t ble_lib_stop_adv(void)
 {
    ret_code_t err_code;
    err_code = sd_ble_gap_adv_stop(m_adv_handle);
    APP_ERROR_CHECK(err_code);
+   return SN_SUCCESS;
 
 }
 
@@ -170,6 +174,8 @@ static void advertising_init(void)
     m_adv_params.filter_policy   = BLE_GAP_ADV_FP_ANY;
     m_adv_params.interval        = NON_CONNECTABLE_ADV_INTERVAL;
     m_adv_params.duration        = 0;       // Never time out.
+    m_adv_params.primary_phy          = BLE_GAP_PHY_1MBPS;       
+    m_adv_params.secondary_phy        = BLE_GAP_PHY_1MBPS;       
 
     err_code = ble_advdata_encode(&advdata, m_adv_data.adv_data.p_data, &m_adv_data.adv_data.len);
     APP_ERROR_CHECK(err_code);
@@ -177,9 +183,6 @@ static void advertising_init(void)
     err_code = sd_ble_gap_adv_set_configure(&m_adv_handle, &m_adv_data, &m_adv_params);
     APP_ERROR_CHECK(err_code);
 }
-
-
-
 
 
 
