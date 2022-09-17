@@ -9,14 +9,13 @@
 
 
 
-sn_error_t sn_sensor_init(sn_sensor_t *me)
+sn_error_t sn_sensor_init(sn_sensor_t * const me)
 {
-
     sensirion_i2c_hal_init(&me->sensor.i2c);
     return SN_SUCCESS;
 }
 
-sn_error_t sn_sensor_get_data(sn_sensor_t *me,sn_data_t *data)
+sn_error_t sn_sensor_get_data(sn_sensor_t const * const me,sn_data_t * const data)
 {
     uint16_t co2;
     int32_t temperature;
@@ -37,7 +36,7 @@ sn_error_t sn_sensor_get_data(sn_sensor_t *me,sn_data_t *data)
     return error;
 }
 
-sn_error_t sn_sensor_wakeup(sn_sensor_t *me)
+sn_error_t sn_sensor_wakeup(sn_sensor_t const * const me)
 {
     uint32_t error = SN_SUCCESS;
     scd4x_wake_up(&me->sensor);
@@ -49,7 +48,7 @@ sn_error_t sn_sensor_wakeup(sn_sensor_t *me)
     return error;
 }
 
-sn_error_t sn_sensor_sleep(sn_sensor_t *me)
+sn_error_t sn_sensor_sleep(sn_sensor_t const * const me)
 {
     scd4x_stop_periodic_measurement(&me->sensor);
     scd4x_power_down(&me->sensor);
